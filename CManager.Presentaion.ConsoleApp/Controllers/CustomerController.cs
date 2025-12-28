@@ -40,6 +40,7 @@ namespace CManager.Presentaion.ConsoleApp.Controllers
                         break;
                     case 5:
                         Console.WriteLine("Thank you for using CManager. Goodbye!");
+                        return;
                     default:
                         Console.WriteLine("Invalid option. Please try again.");
                         break;
