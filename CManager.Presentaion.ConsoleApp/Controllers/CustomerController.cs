@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CManager.Application.Services;
 using CManager.Core.Models;
 
@@ -13,8 +10,7 @@ namespace CManager.Presentaion.ConsoleApp.Controllers
         private readonly CustomerService _customerService;
         public CustomerController(CustomerService customerService)
         {
-            _customerService = customerService;
-            throw new ArgumentNullException(nameof(customerService));
+            _customerService = customerService ?? throw new ArgumentNullException(nameof(customerService));
         }
 
         public void RunMenu()
@@ -46,8 +42,6 @@ namespace CManager.Presentaion.ConsoleApp.Controllers
                         break;
                 }
             }
-            Console.WriteLine("\nPress any key to continue...");
-            Console.ReadKey();
         }
 
         private void DisplayMenu()
@@ -58,7 +52,7 @@ namespace CManager.Presentaion.ConsoleApp.Controllers
             Console.WriteLine("3. View Specific Customer");
             Console.WriteLine("4. Delete Customer by Email");
             Console.WriteLine("5. Exit");
-            Console.WriteLine("\nEnter your choice (1-5): ");
+            Console.Write("\nEnter your choice (1-5): ");
         }
 
         private int GetMenuChoice()
@@ -92,8 +86,22 @@ namespace CManager.Presentaion.ConsoleApp.Controllers
                 var street = Console.ReadLine()?.Trim();
                 Console.Write("Postal Code: ");
                 var postalCode = Console.ReadLine()?.Trim();
-                var customer = _customerService.CreateCustomer(firstName!, lastName!, email!, phoneNumber!, address!, city!, street!, postalCode!);
-                Console.WriteLine($"\n Customer created sucessfully");
+
+                var customerParameter = new Customer
+                {
+                    FirstName = firstName!,
+                    LastName = lastName!,
+                    Email = email!,
+                    PhoneNumber = phoneNumber!,
+                    Address = address!,
+                    City = city!,
+                    Street = street!,
+                    PostalCode = postalCode!
+                };
+
+                var customer = _customerService.CreateCustomer(customerParameter);
+
+                Console.WriteLine($"\nCustomer created successfully!");
                 Console.WriteLine($"ID: {customer.Id}");
                 Console.WriteLine($"First name: {customer.FirstName}");
                 Console.WriteLine($"Last name: {customer.LastName}");
@@ -103,7 +111,6 @@ namespace CManager.Presentaion.ConsoleApp.Controllers
                 Console.WriteLine($"City: {customer.City}");
                 Console.WriteLine($"Street: {customer.Street}");
                 Console.WriteLine($"Postal Code: {customer.PostalCode}");
-
             }
             catch (Exception ex)
             {
@@ -144,11 +151,10 @@ namespace CManager.Presentaion.ConsoleApp.Controllers
             if (customer == null)
             {
                 Console.WriteLine($"No Customer found with email: {email}");
-                return;
             }
             else
             {
-                Console.WriteLine("\n Customer Found");
+                Console.WriteLine("\nCustomer Found:");
                 DisplayCustomer(customer, true);
             }
         }
@@ -164,20 +170,22 @@ namespace CManager.Presentaion.ConsoleApp.Controllers
                 Console.WriteLine("\nEmail cannot be empty.");
                 return;
             }
+
             Console.Write($"Are you sure you want to delete customer with email '{email}'? (y/n): ");
             var confirmation = Console.ReadLine()?.Trim().ToLower();
-           if(confirmation != "y")
+            if (confirmation != "y")
             {
                 Console.WriteLine("\nDeletion cancelled.");
                 return;
             }
+
             try
             {
                 var success = _customerService.DeleteCustomerByEmail(email!);
-                if (success)   
-                   Console.WriteLine($"\nCustomer with email '{email}' has been deleted successfully.");
-                else 
-                   Console.WriteLine($"No customer found with email: {email}");
+                if (success)
+                    Console.WriteLine($"\nCustomer with email '{email}' has been deleted successfully.");
+                else
+                    Console.WriteLine($"No customer found with email: {email}");
             }
             catch (Exception ex)
             {
@@ -185,7 +193,8 @@ namespace CManager.Presentaion.ConsoleApp.Controllers
             }
         }
 
-        private void DisplayCustomer(CustomerController customer, bool detailed = false)
+        // FIXED: Accept Customer object instead of CustomerController
+        private void DisplayCustomer(Customer customer, bool detailed = false)
         {
             Console.WriteLine($"First name: {customer.FirstName}");
             Console.WriteLine($"Last name: {customer.LastName}");
@@ -197,8 +206,7 @@ namespace CManager.Presentaion.ConsoleApp.Controllers
                 Console.WriteLine($"City: {customer.City}");
                 Console.WriteLine($"Street: {customer.Street}");
                 Console.WriteLine($"Postal Code: {customer.PostalCode}");
-
             }
         }
-     }
-  }
+    }
+}
