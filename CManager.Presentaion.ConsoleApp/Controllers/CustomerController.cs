@@ -122,18 +122,24 @@ namespace CManager.Presentaion.ConsoleApp.Controllers
         {
             Console.Clear();
             Console.WriteLine("=== All Customers ===");
+
             var customers = _customerService.GetAllCustomers();
+
             if (customers.Count == 0)
             {
                 Console.WriteLine("No customers found.");
+                Pause();
                 return;
             }
+
             foreach (var customer in customers)
             {
                 DisplayCustomer(customer);
                 Console.WriteLine("---------------------------");
             }
+
             Console.WriteLine($"\nTotal Customers: {customers.Count}");
+            Pause();
         }
 
         private void ViewSpecificCustomer()
@@ -141,22 +147,34 @@ namespace CManager.Presentaion.ConsoleApp.Controllers
             Console.Clear();
             Console.WriteLine("=== View Specific Customer ===");
             Console.Write("Enter customer email: ");
-            var email = Console.ReadLine()?.Trim();
-            if (string.IsNullOrEmpty(email))
+
+            var email = Console.ReadLine();
+
+            try
             {
-                Console.WriteLine("Email cannot be empty.");
-                return;
+                var customer = _customerService.GetCustomerByEmail(email!);
+
+                if (customer == null)
+                {
+                    Console.WriteLine($"No customer found with email: {email}");
+                }
+                else
+                {
+                    Console.WriteLine("\nCustomer Found:");
+                    DisplayCustomer(customer, true);
+                }
             }
-            var customer = _customerService.GetCustomerByEmail(email!);
-            if (customer == null)
+            catch (Exception ex)
             {
-                Console.WriteLine($"No Customer found with email: {email}");
+                Console.WriteLine($"\nError: {ex.Message}");
             }
-            else
-            {
-                Console.WriteLine("\nCustomer Found:");
-                DisplayCustomer(customer, true);
-            }
+
+            Pause();
+        }
+        private void Pause()
+        {
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey();
         }
 
         private void DeleteCustomer()
