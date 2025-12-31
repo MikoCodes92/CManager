@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using CManager.Core.Models;
+﻿using CManager.Core.Models;
 using CManager.Infrastructure.Data;
 using Xunit;
 
@@ -44,14 +41,14 @@ namespace CManager.Tests.UnitTests
             var customer = new Customer
             {
                 Id = Guid.NewGuid(),
-                firstName = "John",
-                lastName = "Doe",
-                email = "john.doe@gmail.com",
-                phoneNumber = "123-456-7890",
-                address = "123 Main St, Anytown, USA",
-                city = "Anytown",
-                street = "123 Main St",
-                postalCode = "33457"
+                FirstName = "John",
+                LastName = "Doe",
+                Email = "john.doe@gmail.com",
+                PhoneNumber = "123-456-7890",
+                Address = "123 Main St, Anytown, USA",
+                City = "Anytown",
+                Street = "123 Main St",
+                PostalCode = "33457"
             };
 
             // Act
@@ -63,7 +60,7 @@ namespace CManager.Tests.UnitTests
             // verify that the customer was added successfully
             var customers = _repository.GetAll().ToList();
             Assert.Single(customers);
-            Assert.Equal("john.doe@gmail.com", customers[0].email);
+            Assert.Equal("john.doe@gmail.com", customers[0].Email);
         }
 
         [Fact]
@@ -74,13 +71,13 @@ namespace CManager.Tests.UnitTests
             var customer1 = new Customer
             {
                 Id = Guid.NewGuid(),
-                email = "customer1@gmail.com"
+                Email = "customer1@gmail.com"
             };
 
             var customer2 = new Customer
             {
                 Id = Guid.NewGuid(),
-                email = "customer2@gmail.com"
+                Email = "customer2@gmail.com"
             };
 
             _repository.Add(customer1);
@@ -105,7 +102,7 @@ namespace CManager.Tests.UnitTests
             var customer = new Customer
             {
                 Id = Guid.NewGuid(),
-                email = "delete@gmail.com"
+                Email = "delete@gmail.com"
             };
 
             _repository.Add(customer);
@@ -130,14 +127,14 @@ namespace CManager.Tests.UnitTests
             var customer = new Customer
             {
                 Id = Guid.NewGuid(),
-                firstName = "Original Name",
-                lastName = "Name",
-                email = "original@gmail.com",
-                phoneNumber = "0",
-                address = "Original Address",
-                city = "Original City",
-                street = "0",
-                postalCode = "00000"
+                FirstName = "Original Name",
+                LastName = "Name",
+                Email = "original@gmail.com",
+                PhoneNumber = "0",
+                Address = "Original Address",
+                City = "Original City",
+                Street = "0",
+                PostalCode = "00000"
             };
 
             _repository.Add(customer);
@@ -147,14 +144,14 @@ namespace CManager.Tests.UnitTests
             var updatedCustomer = new Customer
             {
                 Id = customer.Id,
-                firstName = "Updated Name",
-                lastName = "Updated Name",
-                email = "original@gmail.com",
-                phoneNumber = "0",
-                address = "Updated Address",
-                city = "Updated City",
-                street = "0",
-                postalCode = "00000"
+                FirstName = "Updated Name",
+                LastName = "Updated Name",
+                Email = "original@gmail.com",
+                PhoneNumber = "0",
+                Address = "Updated Address",
+                City = "Updated City",
+                Street = "0",
+                PostalCode = "00000"
             };
 
             // Act
@@ -168,14 +165,14 @@ namespace CManager.Tests.UnitTests
 
             var retrieved = _repository.GetByEmail("original@gmail.com");
             Assert.NotNull(retrieved);
-            Assert.Equal("Updated Name", retrieved.firstName);
-            Assert.Equal("Updated Name", retrieved.lastName);
-            Assert.Equal("original@gmail.com", retrieved.email);
-            Assert.Equal("Updated Address", retrieved.address);
-            Assert.Equal("Updated City", retrieved.city);
-            Assert.Equal("0", retrieved.phoneNumber);
-            Assert.Equal("0", retrieved.street);
-            Assert.Equal("00000", retrieved.postalCode);
+            Assert.Equal("Updated Name", retrieved.FirstName);
+            Assert.Equal("Updated Name", retrieved.LastName);
+            Assert.Equal("original@gmail.com", retrieved.Email);
+            Assert.Equal("Updated Address", retrieved.Address);
+            Assert.Equal("Updated City", retrieved.City);
+            Assert.Equal("0", retrieved.PhoneNumber);
+            Assert.Equal("0", retrieved.Street);
+            Assert.Equal("00000", retrieved.PostalCode);
         }
 
         [Fact]
@@ -188,7 +185,7 @@ namespace CManager.Tests.UnitTests
                 _repository.Add(new Customer
                 {
                     Id = Guid.NewGuid(),
-                    email = $"test{i}@example.com"
+                    Email = $"test{i}@example.com"
                 });
             }
 
