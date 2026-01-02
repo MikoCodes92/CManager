@@ -52,7 +52,7 @@ namespace CManager.Tests.UnitTests
             };
 
             // Act
-            var result = _customerService.createCustomer(newCustomer);
+            var result = _customerService.CreateCustomer(newCustomer);
 
             // Assert
             Assert.NotNull(result);
@@ -99,7 +99,7 @@ namespace CManager.Tests.UnitTests
 
             //Act
             var exception = Assert.Throws<InvalidOperationException>(() =>
-             _customerService.createCustomer(newCustomer));
+             _customerService.CreateCustomer(newCustomer));
 
             //Assert
             Assert.Equal("A customer with the provided email already exists.", exception.Message);
