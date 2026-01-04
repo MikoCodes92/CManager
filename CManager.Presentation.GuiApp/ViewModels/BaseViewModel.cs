@@ -16,13 +16,13 @@ namespace CManager.Presentation.GuiApp.ViewModels
         //shows an error message
         protected void ShowError(string message)
         {
-            _statusMessage = $"Required:{message}";
+            StatusMessage = $"Required:{message}";
         }
 
         //shows a success message
         protected void showSuccess(string message)
         {
-            _statusMessage = $"Success:{message}";
+            StatusMessage = $"Success:{message}";
         }
     }
 }
