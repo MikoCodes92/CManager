@@ -11,11 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CManager.Application", "CMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CManager.Presentaion.ConsoleApp", "CManager.Presentaion.ConsoleApp\CManager.Presentaion.ConsoleApp.csproj", "{46337C37-FFF1-4F85-9713-8E71A2791142}"
 EndProject
-<<<<<<< HEAD
-=======
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CManager.Tests", "CManager.Tests\CManager.Tests.csproj", "{81D8C1D2-1BE2-4DD9-B1FE-8C0318F9FB8C}"
-EndProject
->>>>>>> 79bc4ac643de95555978df45a0acb116b2964cb9
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CManager.Tests", "CManager.Tests\CManager.Tests.csproj", "{81D8C1D2-1BE2-4DD9-B1FE-8C0318F9FB8C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CManager.Presentation.GuiApp", "CManager.Presentation.GuiApp\CManager.Presentation.GuiApp.csproj", "{7E6E836C-7A93-4033-8A69-83D762FB667F}"
