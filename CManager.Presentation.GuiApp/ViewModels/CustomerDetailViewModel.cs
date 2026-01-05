@@ -8,8 +8,8 @@ namespace CManager.Presentation.GuiApp.ViewModels
 {
     public partial class CustomerDetailViewModel: BaseViewModel
     {
-        //private readonly CustomerService _CustomerService;
-        //private readonly NavigationService _navigationService;
+        private readonly CustomerService _CustomerService;
+        private readonly NavigationService _navigationService;
         private Guid _customerId;
 
         [ObservableProperty]

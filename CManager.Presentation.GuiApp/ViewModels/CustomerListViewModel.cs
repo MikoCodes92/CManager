@@ -4,7 +4,6 @@ using CManager.Core.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using System.Net;
 
 namespace CManager.Presentation.GuiApp.ViewModels
 {
@@ -44,7 +43,7 @@ namespace CManager.Presentation.GuiApp.ViewModels
             try
             {
                 Customers.Clear();
-                var customers = _customerService.GetAllCustomer();
+                var customers = _customerService.GetAllCustomers();
 
                 foreach (var customer in customers)
                 {
@@ -101,7 +100,7 @@ namespace CManager.Presentation.GuiApp.ViewModels
         }
 
         //views details of thew selected customer
-        [RelayCommand(CanExecute = nameof(CanViewDetails))]]
+        [RelayCommand(CanExecute = nameof(CanViewDetails))]
         private void ViewDetails()
         {
             if(SelectedCustomer != null)
@@ -117,7 +116,7 @@ namespace CManager.Presentation.GuiApp.ViewModels
         }
 
         //called when selectedcustomer changes
-        partial void OnSelectedCustomerChange(CustomerViewModels? value)
+        partial void OnSelectedCustomerChanged(CustomerViewModel? value)
         {
             DeleteCustomerCommand.NotifyCanExecuteChanged();
             ViewDetailsCommand.NotifyCanExecuteChanged();
