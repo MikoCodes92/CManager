@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Controls;
-using System.Presenation.GuiApp.ViewModels;
-using System.Presenation.GuiApp.Views;
+using CManager.Presentation.GuiApp.ViewModels;
+using CManager.Presentation.GuiApp.Views;
 using CManager.Presentation.GuiApp.ViewModels;
 
 namespace CManager.Presentation.GuiApp.Services
@@ -14,7 +14,7 @@ namespace CManager.Presentation.GuiApp.Services
 
         public NavigationService(
             CustomerListViewModel customerListViewModel,
-            CustomerDetailViewModel customerDetailViewModel,
+            CustomerDetailViewModel customerDetailViewModel
             )
         {
             _customerListViewModel = customerListViewModel;
@@ -37,7 +37,7 @@ namespace CManager.Presentation.GuiApp.Services
                 DataContext = _customerListViewModel
             };
             _mainContentControl.Content = view;
-            _customerListViewModel.LoadCustomersCommand.Execute(null);
+            _customerListViewModel.LoadCustomerCommand.Execute(null);
         }
 
         public void NavigateToCreateCustomer()
