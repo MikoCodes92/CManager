@@ -101,7 +101,7 @@ namespace CManager.Presentation.GuiApp.ViewModels
         }
 
         //views details of thew selected customer
-        [RelayCommand(CanExecute = nameof(CanViewDetails))]]
+        [RelayCommand(CanExecute = nameof(CanViewDetails))]
         private void ViewDetails()
         {
             if(SelectedCustomer != null)
@@ -156,14 +156,14 @@ namespace CManager.Presentation.GuiApp.ViewModels
                 throw new ArgumentNullException(nameof(customer));
             }
             Id = customer.Id;
-            FirstName = customer.FirstName;
+            Firstname = customer.FirstName;
             Lastname = customer.LastName;
             Email = customer.Email;
-            PhoneNumber = customer.PhoneNumber;
+            Phonenumber = customer.PhoneNumber;
             Address = customer.Address;
             City = customer.City;
             Street = customer.Street;
-            PostalCode = customer.PostalCode;
+            Postalcode = customer.PostalCode;
             CreatedAt = customer.CreatedAt;
         }
 
