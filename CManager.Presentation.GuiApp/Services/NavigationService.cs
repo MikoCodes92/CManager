@@ -14,7 +14,7 @@ namespace CManager.Presentation.GuiApp.Services
 
         public NavigationService(
             CustomerListViewModel customerListViewModel,
-            CustomerDetailViewModel customerDetailViewModel,
+            CustomerDetailViewModel customerDetailViewModel
             )
         {
             _customerListViewModel = customerListViewModel;
