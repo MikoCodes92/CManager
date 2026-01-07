@@ -5,8 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CManager.Presentation.GuiApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
 
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!--header with navigation-->
+        <Border Grid.Row="0" Background="#007ACC" Padding="10">
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="CustomersButton"
+                        Content="Customers"
+                        Margin="5,0"
+                        Padding="15,5"
+                        Background="#005A9E"
+                        Foreground="White"
+                        FontWeight="Bold"
+                        Click="CustomersButton_Click"/>
+                <Button x:Name="CreateButton"
+                        Content="Create New Customer"
+                        Margin="5,0"
+                        Background="#005A9E"
+                        Foreground="White"
+                        FontWeight="Bold"
+                        Click="CreateButton_Click"/>
+            </StackPanel>
+        </Border>
+        
+        <!--Main Content Area-->
+        <ContentControl Grid.Row="1"
+                        x:Name="MainContent"
+                        Margin="10"/> 
     </Grid>
 </Window>
